@@ -39,7 +39,7 @@ count(*)
 from netflix
 group by type;
 ```
-** Objective: Determine the distribution of content types on Netflix
+** Objective:** Determine the distribution of content types on Netflix
 ### 2. Find the Most Common Rating for Movies and TV Shows
 ``` sql
 select type, rating from(
@@ -51,7 +51,7 @@ from netflix
 group by rating,type) as t1
 where ranking =1;
 ```
-## Objective: Identify the most frequently occurring rating for each type of content.
+**Objective:** Identify the most frequently occurring rating for each type of content.
 ### 3.List All Movies Released in a Specific Year (e.g., 2020)
 ```sql
 select * from netflix 
@@ -59,7 +59,7 @@ where
 type = 'Movie' and 
 release_year =2020;
 ```
-## Objective: Retrieve all movies released in a specific year.
+**Objective:** Retrieve all movies released in a specific year.
 ### 4.Find the Top 5 Countries with the Most Content on Netflix
 ```sql
 select 
@@ -70,14 +70,14 @@ group by 1
 order by 2 desc
 limit 5;
 ```
-## Objective: Identify the top 5 countries with the highest number of content items.
+**Objective:** Identify the top 5 countries with the highest number of content items.
 ### 5. Identify the Longest Movie
 ```sql
 select *from netflix
 where type ='Movie' and 
 duration =(select max(duration) from netflix);
 ```
-## Objective: Find the movie with the longest duration.
+**Objective:** Find the movie with the longest duration.
 ### 6.  Find Content Added in the Last 5 Years
 ```sql
 select *
@@ -85,13 +85,13 @@ from netflix
 where 
 to_date(date_added,'Month DD, YYYY') >= current_date -interval '5 years';
 ```
-## Objective: Retrieve content added to Netflix in the last 5 years.
+**Objective:** Retrieve content added to Netflix in the last 5 years.
 ### 7. Objective: Retrieve content added to Netflix in the last 5 years.
 ```sql
 select * from netflix
 where director Ilike '%Rajiv Chilaka%';
 ```
-## Objective: List all content directed by 'Rajiv Chilaka'.
+**Objective:** List all content directed by 'Rajiv Chilaka'.
 ### 8. List All TV Shows with More Than 5 Seasons
 ```sql
 select *
@@ -99,7 +99,7 @@ from netflix where
 type = 'TV Show' and 
 split_part(duration,' ',1)::numeric>5;
 ```
-## Objective: Identify TV shows with more than 5 seasons.
+**Objective:** Identify TV shows with more than 5 seasons.
 ### 9. Count the Number of Content Items in Each Genre
 ```sql
 select 
@@ -108,7 +108,7 @@ count(show_id)
 from netflix
 group by 1;
 ```
-## Objective: Count the number of content items in each genre.
+**Objective:** Count the number of content items in each genre.
 ### 10.Find each year and the average numbers of content release in India on netflix.
 return top 5 year with highest avg content release!
 ```sql
@@ -121,20 +121,20 @@ where country ='India'
 group by 1
 order by 3 desc;
 ```
-## Objective: Calculate and rank years by the average number of content releases by India.
+**Objective:** Calculate and rank years by the average number of content releases by India.
 ### 11. List All Movies that are Documentaries
 ```sql
 select * from netflix
 where listed_in ilike '%documentaries%';
 ```
-## Objective: Retrieve all movies classified as documentaries.
+**Objective:** Retrieve all movies classified as documentaries.
 ### 12. Find All Content Without a Director
 ```sql
 SELECT * 
 FROM netflix
 WHERE director IS NULL;
 ```
-## Objective: List content that does not have a director.
+**Objective:** List content that does not have a director.
 ### 13. Find How Many Movies Actor 'Salman Khan' Appeared in the Last 10 Years
 ```sql
 SELECT * 
@@ -142,7 +142,7 @@ FROM netflix
 WHERE casts LIKE '%Salman Khan%'
   AND release_year > EXTRACT(YEAR FROM CURRENT_DATE) - 10;
 ```
-## Objective: Count the number of movies featuring 'Salman Khan' in the last 10 years.
+**Objective:** Count the number of movies featuring 'Salman Khan' in the last 10 years.
 ### 14. Find the Top 10 Actors Who Have Appeared in the Highest Number of Movies Produced in India.
 ```sql
 SELECT 
@@ -154,7 +154,7 @@ GROUP BY actor
 ORDER BY COUNT(*) DESC
 LIMIT 10;
 ```
-## Objective: Identify the top 10 actors with the most appearances in Indian-produced movies.
+**Objective:**: Identify the top 10 actors with the most appearances in Indian-produced movies.
 ### 15. Categorize Content Based on the Presence of 'Kill' and 'Violence' Keywords
 ```sql
 SELECT 
@@ -170,4 +170,4 @@ FROM (
 ) AS categorized_content
 GROUP BY category;
 ```
-## Objective: Categorize content as 'Bad' if it contains 'kill' or 'violence' and 'Good' otherwise. Count the number of items in each category.
+**Objective:** Categorize content as 'Bad' if it contains 'kill' or 'violence' and 'Good' otherwise. Count the number of items in each category.
