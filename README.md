@@ -37,5 +37,36 @@ create table netflix
 select type,
 count(*)
 from netflix
-group by type
+group by type;
+```
+## Objective: Determine the distribution of content types on Netflix
+### 2. Find the Most Common Rating for Movies and TV Shows
+``` sql
+select type, rating from(
+select 
+rating, type,
+count(rating),
+rank() over(partition by type order by count(rating) desc) as ranking
+from netflix
+group by rating,type) as t1
+where ranking =1;
+```
+## Objective: Identify the most frequently occurring rating for each type of content.
+### 3.List All Movies Released in a Specific Year (e.g., 2020)
+```sql
+select * from netflix 
+where 
+type = 'Movie' and 
+release_year =2020;
+```
+## Objective: Retrieve all movies released in a specific year.
+### 4.Find the Top 5 Countries with the Most Content on Netflix
+```sql
+select 
+unnest(string_to_array(country,',')) as new_country,
+count(show_id)
+from netflix
+group by 1
+order by 2 desc
+limit 5;
 ```
