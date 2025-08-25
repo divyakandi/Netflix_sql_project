@@ -14,7 +14,7 @@ The data for this project is sourced from the Kaggle dataset:
 -  Dataset Link : (https://www.kaggle.com/datasets/shivamb/netflix-shows#)
 
 ## Schema
-'''sql
+```sql
 create table netflix
 (
   show_id varchar(5),
@@ -30,4 +30,4 @@ create table netflix
   listed_in varchar(250),
   description varchar(550)
 );
-'''
+```
